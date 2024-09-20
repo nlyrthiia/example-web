@@ -8,7 +8,7 @@ export async function GET(
 ) {
   const { directory, file } = params;
   const decodedFile = decodeURIComponent(file);
-  const filePath = path.join(process.cwd(), 'examples', directory, 'sources', decodedFile);
+  const filePath = path.join(process.cwd(), '..', 'examples', directory, 'sources', decodedFile);
 
   if (fs.existsSync(filePath)) {
     const content = fs.readFileSync(filePath, 'utf-8');

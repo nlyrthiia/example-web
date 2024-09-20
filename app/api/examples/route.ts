@@ -25,7 +25,7 @@ function getFiles(dir: string, baseDir: string): any[] {
 }
 
 export async function GET() {
-  const examplesDir = path.join(process.cwd(), 'examples');
+  const examplesDir = path.join(process.cwd(), '..', 'examples');
   const directories = fs.readdirSync(examplesDir, { withFileTypes: true })
     .filter(dirent => dirent.isDirectory())
     .map(dirent => {

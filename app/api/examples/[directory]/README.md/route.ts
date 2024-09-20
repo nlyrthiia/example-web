@@ -7,7 +7,7 @@ export async function GET(
   { params }: { params: { directory: string } }
 ) {
   const { directory } = params;
-  const readmePath = path.join(process.cwd(), 'examples', directory, 'README.md');
+  const readmePath = path.join(process.cwd(), '..', 'examples', directory, 'README.md');
 
   if (fs.existsSync(readmePath)) {
     const content = fs.readFileSync(readmePath, 'utf-8');
