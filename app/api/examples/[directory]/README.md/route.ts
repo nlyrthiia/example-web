@@ -1,18 +1,15 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+import { readTextUnderExamples } from '../../../../lib/safePath';
 
 export async function GET(
-  request: Request,
+  _request: Request,
   { params }: { params: { directory: string } }
 ) {
   const { directory } = params;
-  const readmePath = path.join(process.cwd(), '..', 'examples', directory, 'README.md');
+  const content = readTextUnderExamples(directory, 'README.md');
 
-  if (fs.existsSync(readmePath)) {
-    const content = fs.readFileSync(readmePath, 'utf-8');
+  if (content !== null) {
     return new NextResponse(content);
-  } else {
-    return new NextResponse('README.md not found', { status: 404 });
   }
+  return new NextResponse('README.md not found', { status: 404 });
 }
